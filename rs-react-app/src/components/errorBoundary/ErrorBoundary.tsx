@@ -1,14 +1,18 @@
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 
+interface ErrorBoundaryProps {
+  fallback?: ReactNode;
+}
+
 interface ErrorBoundaryState {
   hasError: boolean;
 }
 
 class ErrorBoundary extends Component<
-  PropsWithChildren<ReactNode>,
+  PropsWithChildren<ErrorBoundaryProps>,
   ErrorBoundaryState
 > {
-  constructor(props: PropsWithChildren<ReactNode>) {
+  constructor(props: PropsWithChildren<ErrorBoundaryProps>) {
     super(props);
     this.state = { hasError: false };
   }
@@ -25,7 +29,7 @@ class ErrorBoundary extends Component<
     if (this.state.hasError) {
       return (
         <div>
-          <h1>Что-то пошло не так.</h1>
+          <h1 data-testid="errorboundary">Что-то пошло не так.</h1>
           <button onClick={this.resetError}>Попробовать снова</button>
         </div>
       );

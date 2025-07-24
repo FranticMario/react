@@ -1,8 +1,9 @@
 import { Component, type ChangeEvent, type FormEvent } from 'react';
-import Header from '../components/header/Header';
+
 import CardList from '../components/cardList/CardList';
 import { searchMovie } from '../shared/api/api';
 import type { HomeState } from '../shared/types/types';
+import SearchInput from '../components/header/SearchInput';
 
 class Home extends Component<Record<string, never>, HomeState> {
   state: HomeState = {
@@ -46,7 +47,7 @@ class Home extends Component<Record<string, never>, HomeState> {
   render() {
     return (
       <div>
-        <Header
+        <SearchInput
           query={this.state.query}
           handleInputChange={this.handleInputChange}
           handleSearch={this.handleSearch}

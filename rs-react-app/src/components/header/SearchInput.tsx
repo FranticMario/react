@@ -10,7 +10,7 @@ interface IHeaderProps {
 interface HeaderState {
   error: boolean;
 }
-class Header extends Component<IHeaderProps, HeaderState> {
+class SearchInput extends Component<IHeaderProps, HeaderState> {
   state = {
     error: false,
   };
@@ -23,13 +23,14 @@ class Header extends Component<IHeaderProps, HeaderState> {
     const { query, handleInputChange, handleSearch } = this.props;
 
     return (
-      <header className="gap-2 p-4 border-2 rounded-3xl">
+      <div className="gap-2 p-4 border-2 rounded-3xl">
         <form onSubmit={handleSearch}>
           <input
             type="text"
             value={query}
             onChange={handleInputChange}
             placeholder="Search a film"
+            aria-label="Search a film"
           />
           <button>Search</button>
         </form>
@@ -37,9 +38,9 @@ class Header extends Component<IHeaderProps, HeaderState> {
         <button onClick={this.toggleError}>Вызвать ошибку</button>
 
         {this.state.error && <BuggyComponent />}
-      </header>
+      </div>
     );
   }
 }
 
-export default Header;
+export default SearchInput;
